@@ -1,0 +1,11 @@
+.recomendations-container {
+    float: left;
+    display: inline-block;
+    width: 25%;
+}
+
+@media screen and (max-width: 767px) {
+    .recomendations-container {
+        display: none;
+    }
+}

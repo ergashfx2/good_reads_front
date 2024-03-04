@@ -1,0 +1,46 @@
+.navbar-custom {
+    background-color: #F4F1EA;
+    height: 65px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    width: 100%;
+}
+
+
+
+
+.text-custom {
+    font-size: 30px;
+    color: saddlebrown;
+}
+
+.navbar-nav {
+    flex-direction: row;
+    text-decoration: none;
+}
+
+
+.navbar-nav li a {
+    margin: 10px;
+    text-decoration: none;
+    color: saddlebrown;
+    font-size: 20px;
+}
+
+.search {
+    border: 2px solid burlywood;
+    border-radius: 10px;
+    width: 20%;
+    height: 35px;
+}
+
+@media (max-device-width: 768px) {
+
+    .navbar-toggler {
+        border-color: saddlebrown;
+    }
+
+    .navbar-custom {
+        width: 100dvh;
+    }
+
+}
