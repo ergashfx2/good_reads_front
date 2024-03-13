@@ -4,7 +4,7 @@ import "../Recomendations/Recomendations.css"
 function Recomendations({books}) {
     console.log(books)
     return (
-        <div className={"recomendations-container"}>
+        <div className={"recomendations-container d-none d-lg-block mt-3"}>
             {books && books.map(item => (
                 <RecmondationsItem key={item.title} title={item.title} image={item.image}/>
             ))}

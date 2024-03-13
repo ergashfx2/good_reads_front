@@ -4,7 +4,7 @@ import FeedsItem from "./FeedsItem/FeedsItem";
 
 function Feeds(props) {
     return (
-        <div className={'feeds-container'}>
+        <div className={'feeds-container mt-3'}>
             {props.books && props.books.map((book)=>(
                           <FeedsItem title={book.title} author={book.author} image={book.image} desc={book.description}/>
             ))}

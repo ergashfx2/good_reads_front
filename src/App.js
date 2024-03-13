@@ -1,6 +1,73 @@
 import './App.css';
 import Navbar from "./components/Navbar/navbar";
-import Home from "./components/HomePage/Home";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Home from "./pages/HomePage/Home";
+import Register from "./pages/Registration/Register";
+import Login from "./pages/Login/Login";
+import {AuthProvider} from "./context/AuthProvider";
+import MyCollections from "./pages/MyCollections/MyCollections";
+const bookCategories = [
+  {
+    category: "Fiction",
+    subcategories: ["Literary Fiction", "Science Fiction", "Fantasy", "Mystery", "Romance", "Historical Fiction", "Thriller/Suspense", "Horror"]
+  },
+  {
+    category: "Non-Fiction",
+    subcategories: ["Biography/Autobiography", "Memoir", "History", "Self-help/Personal Development", "Business/Entrepreneurship", "Philosophy", "Psychology", "Travel", "Health and Wellness", "Cooking/Food"]
+  },
+  {
+    category: "Children's Books",
+    subcategories: ["Picture Books", "Early Readers", "Chapter Books", "Middle Grade", "Young Adult"]
+  },
+  {
+    category: "Poetry",
+    subcategories: ["Traditional Poetry", "Contemporary Poetry", "Epic Poetry"]
+  },
+  {
+    category: "Graphic Novels/Comics",
+    subcategories: ["Superhero Comics", "Manga", "Graphic Memoirs"]
+  },
+  {
+    category: "Reference",
+    subcategories: ["Encyclopedias", "Dictionaries", "Almanacs", "Atlases"]
+  },
+  {
+    category: "Religion/Spirituality",
+    subcategories: ["Christianity", "Islam", "Buddhism", "Hinduism", "Judaism"]
+  },
+  {
+    category: "Science",
+    subcategories: ["Biology", "Physics", "Chemistry", "Astronomy", "Environmental Science"]
+  },
+  {
+    category: "Art/Photography",
+    subcategories: ["Art History", "Photography Techniques", "Coffee Table Books"]
+  },
+  {
+    category: "Technology",
+    subcategories: ["Computer Science", "Programming", "Information Technology", "Internet & Web Development"]
+  },
+  {
+    category: "Music",
+    subcategories: ["Music Theory", "Biographies of Musicians", "Music History"]
+  },
+  {
+    category: "Sports",
+    subcategories: ["Biographies of Athletes", "Sports History", "Instructional Books"]
+  },
+  {
+    category: "Education",
+    subcategories: ["Pedagogy", "Educational Psychology", "Teaching Methods"]
+  },
+  {
+    category: "Travel",
+    subcategories: ["Travel Guides", "Travel Memoirs"]
+  },
+  {
+    category: "Humor",
+    subcategories: ["Satire", "Comedy", "Jokes and Riddles"]
+  }
+];
 
 const books = [
     {
@@ -15,22 +82,26 @@ const books = [
         'author': "Marie-France Léger",
         'description': "Following the death of her abusive ex-boyfriend Malcom, Astra Meredith DuPont moves to a neighboring town in pursuit of a quiet, sedentary lifestyle as an author. While dealing with the traumas of her past, she can't seem to shake off the writer's block that's been eating away at her... that is, until she meets Dr. Noah Praigale, the kind-hearted veterinarian who manages to awaken something beneath the surface.With every chance encounter that pulls the pair together, lines of the…"
     },
-    // {
-    //     'title': "Yellowface",
-    //     'image': "https://telegra.ph/file/2f996bf6c7f7562dc8dba.jpg",
-    //     'author': "R.F. Kuang",
-    //     'description': "With its totally immersive first-person voice, Yellowface grapples with questions of diversity, racism, and cultural appropriation, as well as the terrifying alienation of social media. R.F. Kuang’s novel is timely, razor-sharp, and eminently readable..."
-    // }
-
 
 ]
+
 
 function App() {
     return (
         <div className="main">
+                <AuthProvider>
             <Navbar/>
-            <Home books={books}/>
+                <BrowserRouter>
+                    <Routes>
+                        <Route path={"/"} element={<Home books={books} categories = {bookCategories}/>}/>
+                        <Route path={"sign-up"} element={< Register/>} />
+                        <Route path={"sign-in"} element={<Login/>} />
+                        <Route path={"/my-collections"} element={<MyCollections/>} />
+                    </Routes>
+                </BrowserRouter>
+                        </AuthProvider>
         </div>
+
     );
 }
 

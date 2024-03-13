@@ -1,11 +1,17 @@
-import React from 'react';
 import "../Collection/Collections.css"
-function Collection(props) {
+import CollectionItem from "./CollectionItem/CollectionItem";
+function Collection({categories}) {
+
     return (
-        <div className={"collections-container"}>
-            <h1>Collection Page</h1>
+        <div className={"d-none d-lg-block card mt-3 "}>
+            <div>
+                {categories.map((category, index) => (
+                    <CollectionItem key={index} category={category}/>
+                ))}
+            </div>
         </div>
     );
 }
+
 
 export default Collection;

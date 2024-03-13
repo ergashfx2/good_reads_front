@@ -5,9 +5,10 @@ import "../RecomendationsItem/RecomendationsItem.css"
 function RecmondationsItem(props) {
     return (
         <div className={"rec-item"}>
-            <div className="card mt-3" style={{width: "25rem"}}>
+            <div className="card" style={{width: "25rem"}}>
                 <div className="row no-gutters">
                     <div className="col-md-4">
+                        {/* eslint-disable-next-line jsx-a11y/img-redundant-alt */}
                         <img src={props.image} className="card-img" alt="image"/>
                     </div>
                     <div className="col-md-8">

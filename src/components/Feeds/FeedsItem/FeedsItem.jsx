@@ -2,8 +2,8 @@ import React from 'react';
 
 function FeedsItem(props) {
     return (
-        <div className="container">
-            <section className="mx-auto my-3" style={{width: "42rem"}}>
+        <div className="container z-0">
+            <section className="mx-auto" style={{width: "42rem"}}>
 
                 <div className="card">
                     <div className="card-body d-flex flex-row">
@@ -16,6 +16,7 @@ function FeedsItem(props) {
                         </div>
                     </div>
                     <div className="bg-image hover-overlay ripple rounded-0" data-mdb-ripple-color="light">
+                        {/* eslint-disable-next-line jsx-a11y/img-redundant-alt */}
                         <img className=" rounded mx-auto d-block"
                              src={props.image}
                              alt="Card image cap"/>
