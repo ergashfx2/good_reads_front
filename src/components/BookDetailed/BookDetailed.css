@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&family=Saira+Extra+Condensed:wght@100;200;300;400;500;600;700;800;900&family=Wix+Madefor+Display:wght@400..800&display=swap');
+
+
+.left-side {
+    height: 100vh;
+}
+
+.image-book {
+    margin-top: 10%;
+    max-height: 400px;
+    max-width: 400px;
+}
+
+
+.button-custom {
+    width: 89%;
+}
+
+.book-title {
+    font-family: Times, Times New Roman, serif;
+}
+
+.author {
+    font-family: "Raleway", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 100;
+    font-style: normal;
+}
+

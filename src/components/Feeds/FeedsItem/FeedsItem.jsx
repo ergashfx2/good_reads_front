@@ -1,5 +1,5 @@
 import React from 'react';
-
+import "./FeedsItem.css"
 function FeedsItem(props) {
     return (
         <div className="container z-0">
@@ -7,7 +7,7 @@ function FeedsItem(props) {
 
                 <div className="card">
                     <div className="card-body d-flex flex-row">
-                        <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-8.jpg"
+                        <img src="https://static.vecteezy.com/system/resources/previews/027/448/973/non_2x/avatar-account-icon-default-social-media-profile-photo-vector.jpg"
                              className="rounded-circle me-3" height="50px"
                              width="50px" alt="avatar"/>
                         <div>
@@ -17,7 +17,7 @@ function FeedsItem(props) {
                     </div>
                     <div className="bg-image hover-overlay ripple rounded-0" data-mdb-ripple-color="light">
                         {/* eslint-disable-next-line jsx-a11y/img-redundant-alt */}
-                        <img className=" rounded mx-auto d-block"
+                        <img className=" feeds-image rounded mx-auto d-block"
                              src={props.image}
                              alt="Card image cap"/>
                         <a href="#!">
@@ -25,11 +25,11 @@ function FeedsItem(props) {
                         </a>
                     </div>
                     <div className="card-body">
-                        <p className={`card-text'}`} id="collapseContent">
-                            {props.desc}
-                        </p>
+                        <div className={`card-text'}`} id="collapseContent" dangerouslySetInnerHTML={{__html: props.desc.slice(0,200)}}>
+
+                        </div>
                         <div className="d-flex justify-content-between">
-                            <button className="btn btn-link link-danger p-md-1 my-1">'Read more'</button>
+                            <button className="btn btn-link link-danger p-md-1 my-1">Read more</button>
                             <div>
                                 <i className="fas fa-share-alt text-muted p-md-1 my-1 me-2" data-mdb-toggle="tooltip"
                                    data-mdb-placement="top" title="Share this post"></i>

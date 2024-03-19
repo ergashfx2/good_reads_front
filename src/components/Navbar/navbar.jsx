@@ -2,8 +2,9 @@ import React, {useContext} from 'react';
 import { Navbar, Container, Nav, Dropdown } from 'react-bootstrap';
 import './Navbar.css';
 import AuthContext from "../../context/AuthProvider";
+import {Link} from "react-router-dom";
 function AppNavbar() {
-  const {auth} = useContext(AuthContext)
+  const {auth,logout} = useContext(AuthContext)
   return (
     <Navbar expand="md" className="navbar-custom">
       <Container>
@@ -23,17 +24,17 @@ function AppNavbar() {
               </div>
               <div className="offcanvas-body">
                 <ul className="navbar-nav ml-auto d-flex flex-column">
-                  <li className="nav-item "><a className="nav-link" href="/">Home</a></li>
-                  <li className="nav-item"><a className="nav-link" href="/mybooks">My Books</a></li>
-                  <li className="nav-item"><a className="nav-link" href="/browse">Browse</a></li>
+                  <li className="nav-item "><Link className={'nav-link'} to={"/"}>Home</Link></li>
+                  <li className="nav-item"><Link className={'nav-link'} to={"/"}>My Books</Link></li>
+                  <li className="nav-item"><Link className={'nav-link'} to={"/"}>Browse</Link></li>
                 </ul>
               </div>
             </div>
             <div className="collapse navbar-collapse justify-content-end" id="navbarNav">
               <ul className="navbar-nav ml-auto">
-                <li className="nav-item "><a className="nav-link" href="/">Home</a></li>
-                <li className="nav-item"><a className="nav-link" href="/mybooks">My Books</a></li>
-                <li className="nav-item"><a className="nav-link" href="/browse">Browse</a></li>
+                <li className="nav-item "><Link className={'nav-link'} to={"/"}>Home</Link></li>
+                <li className="nav-item"><Link className={'nav-link'} to={"/mybooks"}>My Books</Link></li>
+                <li className="nav-item"><Link className={'nav-link'} to={"/browse"}>Browse</Link></li>
               </ul>
             </div>
           </Nav>
@@ -45,13 +46,13 @@ function AppNavbar() {
           <Dropdown.Menu>
             {auth ? (
                 <div>
-                <Dropdown.Item href="/my-collections ">My collections</Dropdown.Item>
-            <Dropdown.Item href="/sign-up">Profile</Dropdown.Item>
-                  <Dropdown.Item ><button className={"btn"}>Log out</button></Dropdown.Item>
+                  <Dropdown.Item><Link className={'plain-text'} to={"/my-collections/"}>My collections</Link></Dropdown.Item>
+                  <Dropdown.Item><Link className={'plain-text'} to={"/profile/"}>Profile</Link></Dropdown.Item>
+                  <Dropdown.Item ><div onClick={logout}><Link className={'plain-text'} to={"/"}>Log out</Link> </div></Dropdown.Item>
                               </div>
             ):(<div>
-                <Dropdown.Item href="/sign-in">Sign in</Dropdown.Item>
-            <Dropdown.Item href="/sign-up">Sign up</Dropdown.Item>
+                  <Dropdown.Item><Link className={'plain-text'} to={"/sign-in/"}>Sign in</Link></Dropdown.Item>
+                  <Dropdown.Item><Link className={'plain-text'} to={"/sign-up/"}>Sign up</Link></Dropdown.Item>
               </div>
               )}
           </Dropdown.Menu>

@@ -6,6 +6,11 @@
 }
 
 
+.plain-text {
+    text-decoration: none;
+    color: black;
+}
+
 
 
 .text-custom {

@@ -5,3 +5,8 @@
 .fas.fa-share-alt:hover {
   color: #0d47a1 !important;
 }
+
+.feeds-image {
+  max-width: 500px;
+  max-height: 500px;
+}
