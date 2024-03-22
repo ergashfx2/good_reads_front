@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react';
 import api from "../../utils/utils";
 import {Link, useNavigate, useParams} from "react-router-dom";
 import Button from "react-bootstrap/Button";
-import {GetCollectionBooks} from "../../utils/utils";
 function CollectionBooks(props) {
     const params = useParams()
     // eslint-disable-next-line no-unused-vars
@@ -12,7 +11,7 @@ function CollectionBooks(props) {
     useEffect( () => {
             try {
 
-            const res = api.get("/collection-books/", {
+            api.get("/collection-books/", {
                 headers: {
                     Authorization: "Bearer " + localStorage.getItem("token")
                 },
@@ -42,12 +41,6 @@ function CollectionBooks(props) {
             <section style={{height: "60px", width: "100%"}}>
                 <Button variant={'success'} className={'btn-lg mt-3'} onClick={HandleAddBook} type={'button'}>
                     Add Book
-                </Button>
-                <Button variant={'danger'} className={'btn-lg mx-2 mt-3'}>
-                    Delete Book
-                </Button>
-                <Button variant={"warning"} className={'btn-lg mt-3'}>
-                    Update
                 </Button>
             </section>
             <div className={'row'}>

@@ -1,0 +1,17 @@
+.image {
+    max-width: 400px;
+    border-radius: 50px;
+}
+
+.edit-profile-image {
+    margin-left: 17%;
+}
+
+
+@media (max-width: 576px) {
+    .image {
+    max-width: 10%;
+    border-radius: 20px;
+}
+
+}

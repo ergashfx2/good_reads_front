@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+
 import "../MyCollections/MyCollections.css"
 import MyCollection from "../../components/MyCollection/MyCollection";
 

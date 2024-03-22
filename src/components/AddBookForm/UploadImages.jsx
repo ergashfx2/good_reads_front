@@ -5,7 +5,6 @@ import "./AddBookForm.css"
 const ImageUploader = ({handleImagesUrl, submitted}) => {
     const [images, setImages] = useState([]);
     const [droppedImageNames, setDroppedImageNames] = useState([]);
-    const [status,setStatus] = useState(false)
     const handleImageChange = (e) => {
         const uploaded_images = e.target.files
         const imagesArray = []
@@ -33,28 +32,27 @@ const ImageUploader = ({handleImagesUrl, submitted}) => {
     };
 
     useEffect(() => {
-            const fetchData = async () => {
-                if (submitted) {
-                    try {
-                        if (images) {
-                            let downloadURLs = []
-                            for (const image of images) {
-                                const imageUrl = await uploadImage(image);
-                                downloadURLs.push(imageUrl)
-                            }
-                            handleImagesUrl(downloadURLs)
-                        } else {
-                            alert('No image selected.');
+        const fetchData = async () => {
+            if (submitted) {
+                try {
+                    if (images) {
+                        let downloadURLs = []
+                        for (const image of images) {
+                            const imageUrl = await uploadImage(image);
+                            downloadURLs.push(imageUrl)
                         }
-                    } catch (error) {
-                        alert(`Error uploading image: ${error}`)
+                        handleImagesUrl(downloadURLs)
+                    } else {
+                        alert('No image selected.');
                     }
+                } catch (error) {
+                    alert(`Error uploading image: ${error}`)
                 }
-            };
+            }
+        };
 
-            fetchData();
-        },
-        [submitted]);
+        fetchData();
+    }, [submitted]);
 
 
     return (

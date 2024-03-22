@@ -1,0 +1,8 @@
+.image-author {
+    max-width: 300px;
+    max-height: 300px;
+}
+
+hr.solid {
+    border-top: 10px solid #999;
+}

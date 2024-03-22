@@ -1,5 +1,6 @@
 import React from 'react';
 import "../RecomendationsItem/RecomendationsItem.css"
+import {Link} from "react-router-dom";
 
 
 function RecmondationsItem(props) {
@@ -13,7 +14,7 @@ function RecmondationsItem(props) {
                     </div>
                     <div className="col-md-8">
                         <div className="card-body">
-                            <h5 className="card-title">{props.title}</h5>
+                            <Link to={`/books/${props.id}`} className={"card-title plain-text"}>{props.title}</Link>
                         </div>
                     </div>
                 </div>

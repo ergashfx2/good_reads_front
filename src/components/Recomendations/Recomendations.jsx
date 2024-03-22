@@ -5,7 +5,7 @@ function Recomendations({books}) {
     return (
         <div className={"recomendations-container d-none d-lg-block mt-3"}>
             {books && books.map(item => (
-                <RecmondationsItem key={item.id} title={item.title} image={item.image}/>
+                <RecmondationsItem id={item.id} title={item.title} image={item.image}/>
             ))}
         </div>
 

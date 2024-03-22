@@ -96,7 +96,7 @@ const AddBookForm = () => {
             });
         }
 
-    }, [imageUrls]);
+    }, [imageUrls,]);
 
     const handleSubmit = async (e) => {
         if (description && title && category && subcategories && imageUrls){
