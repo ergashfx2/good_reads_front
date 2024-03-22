@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
 import "../CollectionItem/CollectionsItem.css"
-const CollectionsItem = ({ subcategory }) => {
-    return <li className={"list-group-item"}><a className={"link-custom"} href={`/${subcategory}`}>{subcategory} </a></li>;
+import {Link} from "react-router-dom";
+const CollectionsItem = ({ subcategory, setCategory }) => {
+    return <li className={"list-group-item"}><Link onClick={setCategory} to={''}>{subcategory}</Link></li>;
 };
 const CollectionItem = ({ category }) => {
   const [isOpen, setIsOpen] = useState(false);

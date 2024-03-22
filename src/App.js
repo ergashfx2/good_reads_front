@@ -1,16 +1,18 @@
-import './App.css';
+import React, { lazy, Suspense } from "react";
+import { Routes, Route } from "react-router-dom";
+import { AuthProvider } from "./context/AuthProvider";
 import Navbar from "./components/Navbar/navbar";
-import {Routes, Route} from "react-router-dom";
-import Home from "./pages/HomePage/Home";
-import Register from "./pages/Registration/Register";
-import Login from "./pages/Login/Login";
-import {AuthProvider} from "./context/AuthProvider";
-import MyCollections from "./pages/MyCollections/MyCollections";
-import CollectionBooksPage from "./pages/CollectionBooks/CollectionBooksPage";
-import AddBookPage from "./pages/AddBookPage/AddBookPage";
-import BookDetailedPage from "./pages/BookDetailedPage/BookDetailedPage";
-import MyProfilePage from "./pages/MyProfilePage/MyProfilePage";
-import AuthorPage from "./pages/AuthorPage/AuthorPage";
+
+const Home = lazy(() => import("./pages/HomePage/Home"));
+const Register = lazy(() => import("./pages/Registration/Register"));
+const Login = lazy(() => import("./pages/Login/Login"));
+const MyCollections = lazy(() => import("./pages/MyCollections/MyCollections"));
+const CollectionBooksPage = lazy(() => import("./pages/CollectionBooks/CollectionBooksPage"));
+const AddBookPage = lazy(() => import("./pages/AddBookPage/AddBookPage"));
+const BookDetailedPage = lazy(() => import("./pages/BookDetailedPage/BookDetailedPage"));
+const MyProfilePage = lazy(() => import("./pages/MyProfilePage/MyProfilePage"));
+const AuthorPage = lazy(() => import("./pages/AuthorPage/AuthorPage"));
+const BrowsePage = lazy(() => import("./pages/BrowsePage/BrowsePage"));
 
 const bookCategories = [
     {
@@ -81,17 +83,20 @@ function App() {
         <div className="main">
             <AuthProvider>
                 <Navbar/>
-                <Routes>
-                    <Route path={"/"} element={<Home categories={bookCategories}/>}/>
-                    <Route path={"/sign-up/"} element={< Register/>}/>
-                    <Route path={"/sign-in/"} element={<Login/>}/>
-                    <Route path={"/my-collections/"} element={<MyCollections/>}/>
-                    <Route path={"/collection/:colID"} element={<CollectionBooksPage/>}/>
-                    <Route path={"/collection/add-book/:colID/"} element={<AddBookPage/>}/>
-                    <Route path={"/books/:bookID"} element={<BookDetailedPage/>}/>
-                    <Route path={"/my-profile/"} element={<MyProfilePage/>}/>
-                    <Route path={"/author/:id"} element={<AuthorPage/>}/>
-                </Routes>
+                <Suspense fallback={<div>Loading...</div>}>
+                    <Routes>
+                        <Route path={"/"} element={<Home categories={bookCategories}/>}/>
+                        <Route path={"/sign-up/"} element={<Register/>}/>
+                        <Route path={"/sign-in/"} element={<Login/>}/>
+                        <Route path={"/my-collections/"} element={<MyCollections/>}/>
+                        <Route path={"/collection/:colID"} element={<CollectionBooksPage/>}/>
+                        <Route path={"/collection/add-book/:colID/"} element={<AddBookPage/>}/>
+                        <Route path={"/books/:bookID"} element={<BookDetailedPage/>}/>
+                        <Route path={"/my-profile/"} element={<MyProfilePage/>}/>
+                        <Route path={"/author/:id"} element={<AuthorPage/>}/>
+                        <Route path={"/browse"} element={<BrowsePage/>}/>
+                    </Routes>
+                </Suspense>
             </AuthProvider>
         </div>
 

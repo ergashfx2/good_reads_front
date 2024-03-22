@@ -1,12 +1,12 @@
 import "../Collection/Collections.css"
 import CollectionItem from "./CollectionItem/CollectionItem";
-function Collection({categories}) {
+function Collection({categories,setCategory}) {
 
     return (
         <div className={"d-none d-lg-block card mt-3 "}>
             <div>
                 {categories.map((category, index) => (
-                    <CollectionItem key={index} category={category}/>
+                    <CollectionItem setCategory={setCategory} key={index} category={category}/>
                 ))}
             </div>
         </div>

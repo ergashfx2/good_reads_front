@@ -36,14 +36,7 @@ function BookDetailed(props) {
                             <button className={"mx-3 mt-3 fs-4 btn btn-outline-success button-custom"}>I want to read
                             </button>
                         </div>
-                    ) : (
-                        <div id="loading-test-4" style={{height: "300px", width: "100%"}}>
-                            <div className="loading" data-mdb-parent-selector="#loading-test-4">
-                                <div className="spinner-grow loading-icon" role="status"></div>
-                                <span className="loading-text">Loading...</span>
-                            </div>
-                        </div>
-                    )}
+                    ) : null}
 
                 </div>
                 <div className={"col-7"}>
@@ -74,14 +67,7 @@ function BookDetailed(props) {
                                 </div>
 
                             )}</div>
-                    ) : (
-                        <div id="loading-test-4" style={{height: "300px", width: "100%"}}>
-                            <div className="loading" data-mdb-parent-selector="#loading-test-4">
-                                <div className="spinner-grow loading-icon" role="status"></div>
-                                <span className="loading-text">Loading...</span>
-                            </div>
-                        </div>
-                    )}
+                    ) :null}
                 </div>
                 <div className={"col-2"}>
 

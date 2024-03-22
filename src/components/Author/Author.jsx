@@ -20,14 +20,7 @@ function Author({author}) {
                                 src={author.avatar || "https://static.vecteezy.com/system/resources/previews/027/448/973/non_2x/avatar-account-icon-default-social-media-profile-photo-vector.jpg"}
                                 className={"image-author mt-3 mx-5"} alt={'img'}/>
                         </div>
-                    ) : (
-                        <div id="loading-test-4" style={{height: "300px", width: "100%"}}>
-                            <div className="loading" data-mdb-parent-selector="#loading-test-4">
-                                <div className="spinner-grow loading-icon" role="status"></div>
-                                <span className="loading-text">Loading...</span>
-                            </div>
-                        </div>
-                    )}
+                    ) : null}
 
                 </div>
                 <div className={"col-7"}>
@@ -59,14 +52,7 @@ function Author({author}) {
 
                             </div>
                         </div>
-                    ) : (
-                        <div id="loading-test-4" style={{height: "300px", width: "100%"}}>
-                            <div className="loading" data-mdb-parent-selector="#loading-test-4">
-                                <div className="spinner-grow loading-icon" role="status"></div>
-                                <span className="loading-text">Loading...</span>
-                            </div>
-                        </div>
-                    )}
+                    ) : null}
                 </div>
                 <div className={"col-2"}>
 

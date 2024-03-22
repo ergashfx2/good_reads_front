@@ -202,12 +202,7 @@ function MyProfile({
                     </Modal>
                 </div>
 
-            ) : (<div id="loading-test-4" style={{height: "300px", width: "100%"}}>
-                <div className="loading" data-mdb-parent-selector="#loading-test-4">
-                    <div className="spinner-grow loading-icon" role="status"></div>
-                    <span className="loading-text">Loading...</span>
-                </div>
-            </div>)}
+            ) : null}
         </div>
 
     );
