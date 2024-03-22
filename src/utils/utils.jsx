@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "http://localhost:8081/api/users"
+  baseURL: "https://readopia-backend.onrender.com/api/users"
 });
 
 const bookCategories = [
