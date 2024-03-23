@@ -22,7 +22,7 @@ function Home(props) {
                 setNewFeeds(data.feeds)
                 setLoading(false);
             } else {
-                const data = await GetBooksFeed();
+                const data = await GetBooksFeed('none');
                 setFeeds(data.feeds);
                 setLikes(data.likes)
                 console.log(data)
