@@ -1,7 +1,8 @@
-import React, { lazy, Suspense } from "react";
-import { Routes, Route } from "react-router-dom";
-import { AuthProvider } from "./context/AuthProvider";
+import React, {lazy, Suspense} from "react";
+import {Routes, Route} from "react-router-dom";
+import {AuthProvider} from "./context/AuthProvider";
 import Navbar from "./components/Navbar/navbar";
+import MyBooksPage from "./pages/MyBooksPage/MyBooksPage";
 
 const Home = lazy(() => import("./pages/HomePage/Home"));
 const Register = lazy(() => import("./pages/Registration/Register"));
@@ -95,6 +96,7 @@ function App() {
                         <Route path={"/my-profile/"} element={<MyProfilePage/>}/>
                         <Route path={"/author/:id"} element={<AuthorPage/>}/>
                         <Route path={"/browse"} element={<BrowsePage/>}/>
+                        <Route path={"/mybooks/"} element={<MyBooksPage/>}/>
                     </Routes>
                 </Suspense>
             </AuthProvider>

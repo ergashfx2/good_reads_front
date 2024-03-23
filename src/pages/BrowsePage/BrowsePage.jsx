@@ -17,7 +17,7 @@ function BrowsePage(props) {
         GetFeed()
     }, []);
     return (
-        <div>
+        <div className={'container'}>
             {loading ? (
                 <div id="loading-test-4" className="full-page-loading">
                     <div className="loading">

@@ -1,21 +1,17 @@
-import React, {useContext, useState} from 'react';
+import React, {useState} from 'react';
 import "./FeedsItem.css"
 import {Link} from "react-router-dom";
-import {FaCommentDots, FaShare, FaThumbsUp} from "react-icons/fa";
+import {FaShare} from "react-icons/fa";
 import {ChatDots, HandThumbsUp} from "react-bootstrap-icons";
 import {BsHandThumbsUpFill} from "react-icons/bs";
 import {Toast} from "react-bootstrap";
-import {AuthProvider} from "../../../context/AuthProvider";
 import api from "../../../utils/utils";
 
 function FeedsItem(props) {
     const [display, setDisplay] = useState('none')
-    const [liked, setLiked] = useState(false)
-    const [isStar, setIsStar] = useState(true);
+    const [liked, setLiked] = useState(props.liked)
     const [show, setShow] = useState(false);
-    const handleClick = () => {
-        setIsStar(!isStar);
-    };
+    const [comment,setComment] = useState()
     const showComments = async (event) => {
         setDisplay('block')
         if (display === 'block') {
@@ -23,22 +19,43 @@ function FeedsItem(props) {
         }
     }
 
+    const handleCommentChange = async (e)=>{
+        setComment(e.target.value)
+    }
+
     const handleLike = async (event) => {
         if (!localStorage.getItem('token')){
             setShow(!show)
             return
         }
-        if (liked){
-
-        }
 
         try{
-            await api.post('/like/',{book_id : event.target.id},{
+            await api.post('/like/',{book_id : props.book_id},{
                 headers : {
                     Authorization: `Bearer ${localStorage.getItem('token')}`
                 }
             }).then(res=>{
                 setLiked(!liked)
+            })
+
+        }catch (error){
+            console.error(error)
+        }
+    }
+
+    const handleComment = async (event) => {
+        if (!localStorage.getItem('token')){
+            setShow(!show)
+            return
+        }
+
+        try{
+            await api.post('/comment/',{comment: comment,book_id : props.book_id},{
+                headers : {
+                    Authorization: `Bearer ${localStorage.getItem('token')}`
+                }
+            }).then(res=>{
+                console.log(res.data)
             })
 
         }catch (error){
@@ -60,7 +77,21 @@ function FeedsItem(props) {
     const handleToggleClose = async ()=>{
         setShow(!show)
     }
+    const handleUnlike = async ()=>{
+        try{
+            await api.post('/unlike/',{book_id : props.book_id},{
+                headers : {
+                    Authorization: `Bearer ${localStorage.getItem('token')}`
+                }
+            }).then(res=>{
+                setLiked(!liked)
+            })
 
+        }catch (error){
+            console.error(error)
+        }
+
+    }
     return (
         <div className="container z-0">
             <section className="mx-auto" style={{width: "42rem"}}>
@@ -107,16 +138,16 @@ function FeedsItem(props) {
                         <div className="small d-flex justify-content-start">
                             {liked ? (
                                 <div>
-                                    <a onClick={handleLike}
+                                    <a onClick={handleUnlike} id={props.book_id}
                                        className="d-flex align-items-center text-decoration-none me-3">
-                                        <BsHandThumbsUpFill size={20} className={'m-2'}/>
-                                        <p className="mb-0">Like</p>
+                                        <BsHandThumbsUpFill id={props.book_id} onClick={handleUnlike} size={20} className={'m-2'}/>
+                                        <p onClick={handleUnlike} id={props.book_id}  className="mb-0">Like</p>
                                     </a>
                                 </div>
                             ) : (<div>
-                                <a id={props.book_id} onClick={handleLike} className="d-flex align-items-center text-decoration-none me-3">
-                                    <HandThumbsUp size={20} className={'m-2'}/>
-                                    <p className="mb-0">Like</p>
+                                <a onClick={handleLike} id={props.book_id} className="d-flex align-items-center text-decoration-none me-3">
+                                    <HandThumbsUp id={props.book_id} onClick={handleLike}  size={20} className={'m-2'}/>
+                                    <p onClick={handleLike} id={props.book_id}  className="mb-0">Like</p>
                                 </a>
                                                                     <Toast show={show} onClose={handleToggleClose}>
                                         <Toast.Header>
@@ -141,14 +172,14 @@ function FeedsItem(props) {
                          style={{backgroundColor: "#f8f9fa;", display: display || 'none'}}>
                         <div className="d-flex flex-start w-100">
                             <div className="form-outline w-100">
-                <textarea className="form-control" id="textAreaExample" rows="4"
+                <textarea onChange={handleCommentChange} className="form-control" id="comment" rows="4"
                           style={{background: "#fff;"}}></textarea>
-                                <label className="form-label" for="textAreaExample">Message</label>
+                                <label className="form-label" for="comment">Message</label>
                             </div>
                         </div>
                         <div className="float-end mt-3 pt-1">
-                            <button type="button" className="btn btn-primary btn-sm">Post comment</button>
-                            <button type="button" className="btn btn-outline-primary btn-sm">Cancel</button>
+                            <button onClick={handleComment} type="button" className="btn btn-primary btn-sm">Post comment</button>
+                            <button onClick={showComments} type="button" className="btn btn-outline-primary btn-sm">Cancel</button>
                         </div>
                     </div>
                 </div>

@@ -3,13 +3,11 @@ import "./Browse.css"
 import {Link} from "react-router-dom";
 
 function Browse({books}) {
-    if (books) {
-        console.log(books)
-    }
     return (
         <div className="row mt-4">
+            <h1 className={'text-center btn-warning mb-3'}>All books</h1>
             {books.map((book, index) => (
-                <div key={index} className="card-custom col-lg-3 col-md-6 mb-4 mb-lg-0 d-flex">
+                <div key={index} className="card-custom col-lg-3 col-md-6 col-sm-6  mb-4 mb-lg-0 d-flex">
                     <div className="card rounded shadow-sm border-0 flex-fill">
                         <div className="card-body p-4 d-flex flex-column justify-content-between">
                             <img src={book.image} alt="" className="img-fluid d-block mx-auto mb-3"></img>

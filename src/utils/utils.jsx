@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "https://readopia-backend.onrender.com/api/users/"
+    baseURL: "https://readopia-backend.onrender.com/api/users/"
 });
 
 const bookCategories = [
@@ -67,41 +67,52 @@ const bookCategories = [
     }
 ];
 
-const GetBooksFeed = async () => {
+const GetBooksFeed = async (category) => {
     try {
-        const response = await api.get("/get-feeds/", {
+        if (!localStorage.getItem('token')) {
+            const response = await api.get("/get-feeds/");
+            return response.data;
+        }
+
+        let config = {
             headers: {
                 Authorization: "Bearer " + localStorage.getItem("token")
             }
-        });
-        return response.data
+        };
+
+        if (category !== 'none') {
+            config.params = { category: category };
+        }
+
+        const response = await api.get("/get-feeds/", config);
+        return response.data;
     } catch (error) {
         console.error("Error fetching feeds:", error);
     }
 };
 
 
-        const createBook = async (BookData) => {
-            try {
-                const token = localStorage.getItem('token');
-                const res = await api.post("/create-book/", BookData, {
-                    headers: {
-                        'Authorization': `Bearer ${token}`,
-                        'Content-Type': 'application/json'
-                    }
-                });
 
-                if (res.status === 200) {
-                    return res.data
-                } else {
-                    return res.data
-                }
-            } catch (error) {
-                alert("Something went wrong")
+const createBook = async (BookData) => {
+    try {
+        const token = localStorage.getItem('token');
+        const res = await api.post("/create-book/", BookData, {
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
             }
-        };
+        });
+
+        if (res.status === 200) {
+            return res.data
+        } else {
+            return res.data
+        }
+    } catch (error) {
+        alert("Something went wrong")
+    }
+};
 
 
-
-export { bookCategories, createBook,GetBooksFeed }
+export {bookCategories, createBook, GetBooksFeed}
 export default api
