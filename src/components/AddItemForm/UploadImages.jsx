@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {uploadImage} from "../../utils/FireBaseConfig";
-import "./AddBookForm.css"
+import "./AddItemForm.css"
 
 const ImageUploader = ({handleImagesUrl, submitted}) => {
     const [images, setImages] = useState([]);

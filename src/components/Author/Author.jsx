@@ -7,9 +7,6 @@ import {Link} from "react-router-dom";
 
 function Author({author}) {
     const [showMore, setShowMore] = useState(false)
-    if (author) {
-        console.log(author.user_books)
-    }
     return (
         <div className={"w-100"}>
             <div className={"row"}>
@@ -35,14 +32,14 @@ function Author({author}) {
                                              email={author.email}/>
                             </div>
                             <div className={'mx-5 mt-4'}>
-                                <h3>Author's books collection</h3>
+                                <h3>Author's collection</h3>
                                 <hr className={'solid w-100'}/>
                                 <div className={'row'}>
-                                    {author.user_books ? author.user_books.map((book, index) => (
+                                    {author.user_items ? author.user_items.map((item, index) => (
                                         <Card key={index} style={{maxWidth: '15rem'}}>
-                                            <Card.Img variant="top" src={book.image}/>
+                                            <Card.Img variant="top" src={item.image}/>
                                             <Card.Body>
-                                                <Card.Title><Link className={'plain-text'} to={`/books/${book.id}`}>{book.title}</Link></Card.Title>
+                                                <Card.Title><Link className={'plain-text'} to={`/items/${item.id}`}>{item.title}</Link></Card.Title>
                                             </Card.Body>
                                         </Card>
                                     )) : null}

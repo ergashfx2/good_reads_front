@@ -1,14 +1,14 @@
 import React, {useEffect, useState} from 'react';
 import "./BrowsePage.css"
 import Browse from "../../components/Browse/Browse";
-import {GetBooksFeed} from "../../utils/utils";
+import {GetItemsFeed} from "../../utils/utils";
 
 function BrowsePage(props) {
     const [feeds, setFeeds] = useState()
     const [loading, setLoading] = useState(true);
     useEffect(() => {
         const GetFeed = async () => {
-            const data = await GetBooksFeed()
+            const data = await GetItemsFeed()
             setFeeds(data.feeds)
             console.log(data)
             setLoading(false)
@@ -26,7 +26,7 @@ function BrowsePage(props) {
                     </div>
                 </div>
             ) : (
-                <Browse books={feeds}/>
+                <Browse items={feeds}/>
             )}
         </div>
     );

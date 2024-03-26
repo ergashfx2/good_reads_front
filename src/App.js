@@ -2,20 +2,23 @@ import React, {lazy, Suspense} from "react";
 import {Routes, Route} from "react-router-dom";
 import {AuthProvider} from "./context/AuthProvider";
 import Navbar from "./components/Navbar/navbar";
-import MyBooksPage from "./pages/MyBooksPage/MyBooksPage";
+import MyItemsPage from "./pages/MyItemsPage/MyItemsPage";
+import AdminPage from "./components/AdminPage/AdminPage";
+import AdminUserView from "./pages/AdminUserView/AdminUserView";
+import "./App.css"
+import ItemDetailedPage from "./pages/ItemDetailedPage/ItemDetailedPage";
 
 const Home = lazy(() => import("./pages/HomePage/Home"));
 const Register = lazy(() => import("./pages/Registration/Register"));
 const Login = lazy(() => import("./pages/Login/Login"));
 const MyCollections = lazy(() => import("./pages/MyCollections/MyCollections"));
-const CollectionBooksPage = lazy(() => import("./pages/CollectionBooks/CollectionBooksPage"));
-const AddBookPage = lazy(() => import("./pages/AddBookPage/AddBookPage"));
-const BookDetailedPage = lazy(() => import("./pages/BookDetailedPage/BookDetailedPage"));
+const CollectionitemsPage = lazy(() => import("./pages/CollectionItemsPage/CollectionItemsPage"));
+const AdditemPage = lazy(() => import("./pages/AdditemPage/AdditemPage"));
 const MyProfilePage = lazy(() => import("./pages/MyProfilePage/MyProfilePage"));
 const AuthorPage = lazy(() => import("./pages/AuthorPage/AuthorPage"));
 const BrowsePage = lazy(() => import("./pages/BrowsePage/BrowsePage"));
-
-const bookCategories = [
+const CollectionSettings = lazy(() => import("./components/MyCollection/MyCollection_Item/CollectionSettings"));
+const itemCategories = [
     {
         category: "Fiction",
         subcategories: ["Literary Fiction", "Science Fiction", "Fantasy", "Mystery", "Romance", "Historical Fiction", "Thriller/Suspense", "Horror"]
@@ -25,8 +28,8 @@ const bookCategories = [
         subcategories: ["Biography/Autobiography", "Memoir", "History", "Self-help/Personal Development", "Business/Entrepreneurship", "Philosophy", "Psychology", "Travel", "Health and Wellness", "Cooking/Food"]
     },
     {
-        category: "Children's CollectionBooksPage",
-        subcategories: ["Picture CollectionBooksPage", "Early Readers", "Chapter CollectionBooksPage", "Middle Grade", "Young Adult"]
+        category: "Children's CollectionitemsPage",
+        subcategories: ["Picture CollectionitemsPage", "Early Readers", "Chapter CollectionitemsPage", "Middle Grade", "Young Adult"]
     },
     {
         category: "Poetry",
@@ -50,7 +53,7 @@ const bookCategories = [
     },
     {
         category: "Art/Photography",
-        subcategories: ["Art History", "Photography Techniques", "Coffee Table CollectionBooksPage"]
+        subcategories: ["Art History", "Photography Techniques", "Coffee Table CollectionitemsPage"]
     },
     {
         category: "Technology",
@@ -62,7 +65,7 @@ const bookCategories = [
     },
     {
         category: "Sports",
-        subcategories: ["Biographies of Athletes", "Sports History", "Instructional CollectionBooksPage"]
+        subcategories: ["Biographies of Athletes", "Sports History", "Instructional CollectionitemsPage"]
     },
     {
         category: "Education",
@@ -86,17 +89,20 @@ function App() {
                 <Navbar/>
                 <Suspense fallback={<div>Loading...</div>}>
                     <Routes>
-                        <Route path={"/"} element={<Home categories={bookCategories}/>}/>
+                        <Route path={"/"} element={<Home categories={itemCategories}/>}/>
                         <Route path={"/sign-up/"} element={<Register/>}/>
                         <Route path={"/sign-in/"} element={<Login/>}/>
                         <Route path={"/my-collections/"} element={<MyCollections/>}/>
-                        <Route path={"/collection/:colID"} element={<CollectionBooksPage/>}/>
-                        <Route path={"/collection/add-book/:colID/"} element={<AddBookPage/>}/>
-                        <Route path={"/books/:bookID"} element={<BookDetailedPage/>}/>
+                        <Route path={"/collection/:colID"} element={<CollectionitemsPage/>}/>
+                        <Route path={"/collection/create/"} element={<CollectionSettings/>}/>
+                        <Route path={"/collection/add-item/:colID/"} element={<AdditemPage/>}/>
+                        <Route path={"/items/:itemID"} element={<ItemDetailedPage/>}/>
                         <Route path={"/my-profile/"} element={<MyProfilePage/>}/>
                         <Route path={"/author/:id"} element={<AuthorPage/>}/>
                         <Route path={"/browse"} element={<BrowsePage/>}/>
-                        <Route path={"/mybooks/"} element={<MyBooksPage/>}/>
+                        <Route path={"/myitems/"} element={<MyItemsPage/>}/>
+                        <Route path={"/admin/"} element={<AdminPage/>}/>
+                        <Route path={"/admin/view/:user_id"} element={<AdminUserView/>}/>
                     </Routes>
                 </Suspense>
             </AuthProvider>

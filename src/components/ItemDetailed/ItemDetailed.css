@@ -5,7 +5,7 @@
     height: 100vh;
 }
 
-.image-book {
+.image-item {
     margin-top: 10%;
     max-height: 400px;
     max-width: 400px;
@@ -16,7 +16,7 @@
     width: 89%;
 }
 
-.book-title {
+.ite,-title {
     font-family: Times, Times New Roman, serif;
 }
 

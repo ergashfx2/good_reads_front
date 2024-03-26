@@ -5,21 +5,21 @@ import FeedsItem from "./FeedsItem/FeedsItem";
 function Feeds(props) {
     return (
         <div className={'feeds-container mt-3'}>
-            {props.books && props.books.length > 0 ? (
+            {props.items && props.items.length > 0 ? (
                 console.log(props.likes),
-                props.books.map((book, index) => {
-                    const liked = props.likes && props.likes.includes(book.id);
+                props.items.map((item, index) => {
+                    const liked = props.likes && props.likes.includes(item.id);
                     console.log(liked)
                     return (
                         <FeedsItem
-                            author_id={book.author_id}
-                            avatar={book.avatar}
+                            author_id={item.author_id}
+                            avatar={item.avatar}
                             key={index}
-                            book_id={book.id}
-                            title={book.title}
-                            author={book.author}
-                            image={book.image}
-                            desc={book.description}
+                            item_id={item.id}
+                            title={item.title}
+                            author={item.author}
+                            image={item.image}
+                            desc={item.description}
                             liked={liked}
                         />
                     );

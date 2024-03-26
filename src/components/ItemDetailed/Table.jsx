@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Table({book}) {
+function Table({item}) {
     function formatDate(dateString) {
         const date = new Date(dateString);
         const options = {year: 'numeric', month: 'long', day: 'numeric'};
@@ -13,20 +13,28 @@ function Table({book}) {
                 <tbody>
                 <tr>
                     <th scope="row">Published</th>
-                    <td>{formatDate(book.created_time)}</td>
+                    <td>{formatDate(item.created_time)}</td>
                 </tr>
                 <tr>
                     <th scope="row">Author</th>
-                    <td>{book.name}</td>
+                    <td>{item.author_name}</td>
                 </tr>
                 <tr>
                     <th scope="row">Related tags</th>
-                    <td>{book.tags.map((tag, index) => (<button key={index} className={"btn mx-1 btn-secondary"}>{tag}</button>))}</td>
+                    <td>{item.tags.map((tag, index) => (
+                        <button key={index} className={"btn mx-1 btn-secondary"}>{tag}</button>))}</td>
                 </tr>
                 <tr>
                     <th scope="row">Category</th>
-                    <td>{book.category}</td>
+                    <td>{item.category}</td>
                 </tr>
+    {Object.entries(JSON.parse(item.custom_field)).map(([key, value], index) => (
+      <tr key={index}>
+        <th scope="row">{key}</th>
+        <td>{value}</td>
+      </tr>
+    ))}
+
                 <tr>
                     <th scope="row">Language</th>
                     <td>English</td>

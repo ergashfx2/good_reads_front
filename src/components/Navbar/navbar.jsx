@@ -16,7 +16,7 @@ function AppNavbar() {
           <Nav className="col-12 col-md-8 d-lg-flex">
             <ul className="justify-content-end mx-5 navbar-nav w-100">
               <li className="nav-item"><Link className={'nav-link'} to={"/"}>Home</Link></li>
-              <li className="nav-item"><Link className={'nav-link'} to={"/mybooks"}>My Books</Link></li>
+              <li className="nav-item"><Link className={'nav-link'} to={"/myitems/"}>Favourite</Link></li>
               <li className="nav-item"><Link className={'nav-link'} to={"/browse"}>Browse</Link></li>
             </ul>
             <Dropdown className="col-md-2">

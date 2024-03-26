@@ -1,10 +1,14 @@
 import axios from "axios";
 
 const api = axios.create({
-    baseURL: "https://readopia-backend.onrender.com/api/users/"
+    baseURL: "http://localhost:8081/api/users/"
 });
 
-const bookCategories = [
+const apiAdmin = axios.create({
+    baseURL: "http://localhost:8081/api/admin/"
+});
+
+const itemCategories = [
     {
         category: "Fiction",
         subcategories: ["Literary Fiction", "Science Fiction", "Fantasy", "Mystery", "Romance", "Historical Fiction", "Thriller/Suspense", "Horror"]
@@ -14,8 +18,8 @@ const bookCategories = [
         subcategories: ["Biography/Autobiography", "Memoir", "History", "Self-help/Personal Development", "Business/Entrepreneurship", "Philosophy", "Psychology", "Travel", "Health and Wellness", "Cooking/Food"]
     },
     {
-        category: "Children's CollectionBooksPage",
-        subcategories: ["Picture CollectionBooksPage", "Early Readers", "Chapter CollectionBooksPage", "Middle Grade", "Young Adult"]
+        category: "Children's CollectionItemsPage",
+        subcategories: ["Picture CollectionItemsPage", "Early Readers", "Chapter CollectionItemsPage", "Middle Grade", "Young Adult"]
     },
     {
         category: "Poetry",
@@ -39,7 +43,7 @@ const bookCategories = [
     },
     {
         category: "Art/Photography",
-        subcategories: ["Art History", "Photography Techniques", "Coffee Table CollectionBooksPage"]
+        subcategories: ["Art History", "Photography Techniques", "Coffee Table CollectionItemsPage"]
     },
     {
         category: "Technology",
@@ -51,7 +55,7 @@ const bookCategories = [
     },
     {
         category: "Sports",
-        subcategories: ["Biographies of Athletes", "Sports History", "Instructional CollectionBooksPage"]
+        subcategories: ["Biographies of Athletes", "Sports History", "Instructional CollectionItemsPage"]
     },
     {
         category: "Education",
@@ -67,7 +71,7 @@ const bookCategories = [
     }
 ];
 
-const GetBooksFeed = async (category) => {
+const GetItemsFeed = async (category) => {
     try {
         if (!localStorage.getItem('token')) {
             const response = await api.get("/get-feeds/");
@@ -93,10 +97,10 @@ const GetBooksFeed = async (category) => {
 
 
 
-const createBook = async (BookData) => {
+const createItem = async (ItemData) => {
     try {
         const token = localStorage.getItem('token');
-        const res = await api.post("/create-book/", BookData, {
+        const res = await api.post("/create-item/", ItemData, {
             headers: {
                 'Authorization': `Bearer ${token}`,
                 'Content-Type': 'application/json'
@@ -114,5 +118,5 @@ const createBook = async (BookData) => {
 };
 
 
-export {bookCategories, createBook, GetBooksFeed}
+export {itemCategories, createItem, GetItemsFeed,apiAdmin}
 export default api

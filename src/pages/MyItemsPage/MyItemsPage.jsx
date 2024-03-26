@@ -1,27 +1,27 @@
 import React, {useEffect, useState} from 'react';
-import MyBooksLiked from "../../components/MyBooksLiked/MyBooksLiked";
+import MyItemsLiked from "../../components/MyItemsLiked/MyItemsLiked";
 import api from "../../utils/utils";
 
-function MyBooksPage(props) {
-    const [books,setBooks] = useState()
+function MyItemsPage(props) {
+    const [items,setitems] = useState()
     useEffect(() => {
         const FetchData = async () =>{
             const token = localStorage.getItem('token')
-            await api.get('/my-liked-books/',{
+            await api.get('/my-liked-items/',{
                 headers : {
                     Authorization: `Bearer ${token}`
                 }
             }).then(res=>{
-                setBooks(res.data.books)
+                setitems(res.data.items)
             })
         }
         FetchData()
     }, []);
     return (
         <div>
-            <MyBooksLiked books={books}/>
+            <MyItemsLiked items={items}/>
         </div>
     );
 }
 
-export default MyBooksPage;
+export default MyItemsPage;

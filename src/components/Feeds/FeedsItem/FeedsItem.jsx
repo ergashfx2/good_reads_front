@@ -30,7 +30,7 @@ function FeedsItem(props) {
         }
 
         try{
-            await api.post('/like/',{book_id : props.book_id},{
+            await api.post('/like/',{item_id : props.item_id},{
                 headers : {
                     Authorization: `Bearer ${localStorage.getItem('token')}`
                 }
@@ -50,7 +50,7 @@ function FeedsItem(props) {
         }
 
         try{
-            await api.post('/comment/',{comment: comment,book_id : props.book_id},{
+            await api.post('/comment/',{comment: comment,item_id : props.item_id},{
                 headers : {
                     Authorization: `Bearer ${localStorage.getItem('token')}`
                 }
@@ -115,7 +115,7 @@ function FeedsItem(props) {
                         )}
                         <div>
                             <Link className={"plain-text link-danger h4 d-block"}
-                                  to={`/books/${props.book_id}`}>{props.title}</Link>
+                                  to={`/items/${props.item_id}`}>{props.title}</Link>
                             <Link to={`author/${props.author_id}`}
                                   className={'card-text fw-bold text-decoration-none plain-text'}>{props.author}</Link>
                         </div>

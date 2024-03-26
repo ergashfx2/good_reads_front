@@ -4,6 +4,9 @@ import {Link} from "react-router-dom";
 
 
 function RecmondationsItem(props) {
+    if (props.id){
+        console.log(props.id)
+    }
     return (
         <div className={"rec-item"}>
             <div className="card" style={{width: "25rem"}}>
@@ -14,7 +17,7 @@ function RecmondationsItem(props) {
                     </div>
                     <div className="col-md-8">
                         <div className="card-body">
-                            <Link to={`/books/${props.id}`} className={"card-title plain-text"}>{props.title}</Link>
+                            <Link to={`/items/${props.id}`} className={"card-title plain-text"}>{props.title}</Link>
                         </div>
                     </div>
                 </div>

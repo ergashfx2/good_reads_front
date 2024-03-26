@@ -4,7 +4,7 @@ import Recomendations from "../../components/Recomendations/Recomendations";
 import Collection from "../../components/Collection/Collection";
 import {useLocation} from "react-router-dom";
 import {useEffect, useState} from "react";
-import {GetBooksFeed} from "../../utils/utils";
+import {GetItemsFeed} from "../../utils/utils";
 
 function Home(props) {
     const location = useLocation();
@@ -18,11 +18,11 @@ function Home(props) {
         setNewFeeds('')
         const getFeed = async () => {
             if (category) {
-                const data = await GetBooksFeed(category);
+                const data = await GetItemsFeed(category);
                 setNewFeeds(data.feeds)
                 setLoading(false);
             } else {
-                const data = await GetBooksFeed('none');
+                const data = await GetItemsFeed('none');
                 setFeeds(data.feeds);
                 setLikes(data.likes)
                 console.log(data)
@@ -46,16 +46,16 @@ function Home(props) {
                 ) : (
                     <div className={'row'}>
                         <div className="col">
-                            <Recomendations books={feeds}/>
+                            <Recomendations items={feeds}/>
                         </div>
                         <div className="col-6">
                             {state && state.success_message && (
                                 <div className="alert alert-success">{state.success_message}</div>
                             )}
                             {newFeeds ? (
-                                <Feeds books={newFeeds} likes={likes}/>
+                                <Feeds items={newFeeds} likes={likes}/>
                             ) : (
-                                <Feeds books={feeds} likes={likes}/>
+                                <Feeds items={feeds} likes={likes}/>
                             )}
                         </div>
                         <div className="col">

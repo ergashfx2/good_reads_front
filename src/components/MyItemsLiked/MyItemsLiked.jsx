@@ -2,20 +2,20 @@ import React from 'react';
 import {Card} from "react-bootstrap";
 import {Link} from "react-router-dom";
 
-function MyBooksLiked({books}) {
+function MyItemsLiked({items}) {
     return (
         <div className={'container'}>
-            <h1 className={'text-center btn-warning mt-1 mb-3'}>All books you liked </h1>
+            <h1 className={'text-center btn-warning mt-1 mb-3'}>All items you liked </h1>
             <div className={'row'}>
 
-            {books ? (
-                books.map((book, index) => (
+            {items ? (
+                items.map((item, index) => (
                     <div key={index} className={'col-lg-3 col-md-6 col-sm-12'}>
 
                     <Card style={{maxWidth: '15rem'}}>
-                        <Card.Img variant="top" src={book.image}/>
+                        <Card.Img variant="top" src={item.image}/>
                         <Card.Body>
-                            <Card.Title><Link className={'card-title plain-text'} to={`/books/${book.id}`}>{book.title}</Link></Card.Title>
+                            <Card.Title><Link className={'card-title plain-text'} to={`/items/${item.id}`}>{item.title}</Link></Card.Title>
                         </Card.Body>
                     </Card>
                     </div>
@@ -26,4 +26,4 @@ function MyBooksLiked({books}) {
     );
 }
 
-export default MyBooksLiked;
+export default MyItemsLiked;
