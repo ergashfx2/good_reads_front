@@ -27,3 +27,15 @@
     font-style: normal;
 }
 
+@media screen and (max-width: 576px) {
+
+
+    .row {
+        width: 100dvh;
+    }
+
+    #item-desc {
+        width: 90dvh;
+        float: left;
+    }
+}

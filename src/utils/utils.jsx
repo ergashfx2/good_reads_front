@@ -1,11 +1,11 @@
 import axios from "axios";
 
 const api = axios.create({
-    baseURL: "http://localhost:8081/api/users/"
+    baseURL: "https://goodreads-backend.vercel.app/api/users/"
 });
 
 const apiAdmin = axios.create({
-    baseURL: "http://localhost:8081/api/admin/"
+    baseURL: "https://goodreads-backend.vercel.app/api/admin/"
 });
 
 const itemCategories = [

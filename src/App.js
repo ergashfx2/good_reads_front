@@ -17,6 +17,7 @@ const AdditemPage = lazy(() => import("./pages/AdditemPage/AdditemPage"));
 const MyProfilePage = lazy(() => import("./pages/MyProfilePage/MyProfilePage"));
 const AuthorPage = lazy(() => import("./pages/AuthorPage/AuthorPage"));
 const BrowsePage = lazy(() => import("./pages/BrowsePage/BrowsePage"));
+const EditItemPage = lazy(() => import("../src/pages/EditItemPage/EditItemPage"))
 const CollectionSettings = lazy(() => import("./components/MyCollection/MyCollection_Item/CollectionSettings"));
 const itemCategories = [
     {
@@ -103,6 +104,7 @@ function App() {
                         <Route path={"/myitems/"} element={<MyItemsPage/>}/>
                         <Route path={"/admin/"} element={<AdminPage/>}/>
                         <Route path={"/admin/view/:user_id"} element={<AdminUserView/>}/>
+                        <Route path={"/edit-item/:id/:colID"} element={<EditItemPage/>}/>
                     </Routes>
                 </Suspense>
             </AuthProvider>

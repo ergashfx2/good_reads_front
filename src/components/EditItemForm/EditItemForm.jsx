@@ -1,16 +1,15 @@
 import React, {useEffect, useState} from "react";
-import UploadImages from "./UploadImages";
+import UploadImages from "../AddItemForm/UploadImages";
 import Form from "react-bootstrap/Form";
-import "./AddItemForm.css";
+import "../AddItemForm/AddItemForm.css";
 import {XCircleFill} from "react-bootstrap-icons";
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import {useNavigate, useParams} from "react-router-dom";
 import Button from "react-bootstrap/Button";
-import BuildCustom from "./BuildCustom";
+import BuildCustom from "../AddItemForm/BuildCustom";
 import api from "../../utils/utils";
-
-const AddItemForm = () => {
+const EditItemForm = ({item}) => {
     const [tags, setTags] = useState([]);
     const [tagsInput, setTagInput] = useState();
     const [title, setTitle] = useState();
@@ -22,26 +21,26 @@ const AddItemForm = () => {
     const [buttonClass, setButtonClass] = useState("btn btn-primary mt-3 w-100");
     const navigate = useNavigate();
     const params = useParams();
-    const [custom, setCustom] = useState()
-    const [customData, setCustomData] = useState([])
-    const [category, setCategory] = useState()
+    const [custom, setCustom] = useState();
+    const [customData, setCustomData] = useState([]);
+    const [category, setCategory] = useState('');
+    const [setted, setSetted] = useState(false)
 
-    useEffect(() => {
-        const GetCustoms = async () => {
-            await api.get('/get-collection/', {
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem('token')}`
-                },
-                params: {
-                    id: params.colID
-                }
-            }).then(res => {
-                console.log(res)
-                setCustom(res.data.collection[0].custom_field)
-            })
-        }
-        GetCustoms()
-    }, []);
+    if (item && !setted) {
+        console.log(item.image)
+        setDescription(item.description)
+        setCustom(item.customData)
+        setTitle(item.title)
+        setCategory(item.category)
+        setTags(item.tags)
+        setSetted(true)
+        setCustom(item.custom_field)
+        setImageUrls([...imageUrls,item.image])
+    }
+
+    if (imageUrls){
+        console.log(imageUrls)
+    }
 
     const handleTitleChange = (e) => {
         setTitle(e.target.value);
@@ -81,20 +80,19 @@ const AddItemForm = () => {
     }, [status]);
 
     useEffect(() => {
-        const collection = params.colID;
-        if (imageUrls.length > 0) {
-            console.log(imageUrls)
+        if (submitted) {
             setStatus("ready");
             const ItemData = {
                 title: title,
                 description: description,
-                collection: collection,
                 tags: tags,
                 images: imageUrls,
                 customData: customData,
-                category: category
+                category: category,
+                id: params.id,
+                collection : params.colID
             };
-            api.post('/create-item/', ItemData, {
+            api.patch('/update-item/', ItemData, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`
                 }
@@ -102,7 +100,7 @@ const AddItemForm = () => {
                 navigate(`/collection/${params.colID}`)
             })
         }
-    }, [imageUrls]);
+    }, [submitted]);
 
     const handleSubmit = async (e) => {
         setSubmitted(!submitted)
@@ -120,15 +118,15 @@ const AddItemForm = () => {
             <Form className={'form-control'}>
                 <Form.Group className="mb-3">
                     <Form.Label className={"fw-bold"}>Enter title of collections </Form.Label>
-                    <Form.Control onChange={handleTitleChange} type="text"/>
+                    <Form.Control value={title} onChange={handleTitleChange} type="text"/>
                 </Form.Group>
                 <Form.Group className="mb-3">
                     <Form.Label className={"fw-bold"}>Enter detailed description </Form.Label>
-                    <ReactQuill onChange={handleDescriptionChange}/>
+                    <ReactQuill value={description} onChange={handleDescriptionChange}/>
                 </Form.Group>
                 <Form.Group className="mb-3">
                     <Form.Label className={"fw-bold"}>Enter category </Form.Label>
-                    <Form.Control onChange={handleCategory} type="text"/>
+                    <Form.Control value={category} onChange={handleCategory} type="text"/>
                 </Form.Group>
                 <Form.Group className="mb-3">
                     <Form.Label className={"fw-bold"}>Enter tags </Form.Label>
@@ -153,11 +151,11 @@ const AddItemForm = () => {
                 </Form.Group>
 
             </Form>
-            {custom ? (<BuildCustom setCustomData={setCustomData} fields={custom}/>):null}
+            <BuildCustom setCustomData={setCustomData} fields={custom}/>
             <UploadImages handleImagesUrl={handleImagesUrl} setImagesUrl={setImageUrls} submitted={submitted}/>
             <Button className={buttonClass} onClick={handleSubmit} variant={'primary'}>{buttonText}</Button>
         </div>
     );
 };
 
-export default AddItemForm;
+export default EditItemForm;

@@ -58,21 +58,19 @@ function ItemDetailed(props) {
     }
 
     return (
-        <div className={"w-100"}>
+        <div>
             <div className={"row"}>
-                <div className={"col-3 left-side border-end border-1"}>
+                <div className={"col-lg-3 d-lg-block d-md-block d-sm-none col-sm-6 left-side border-end border-1"}>
                     {item ? (
-                        <div className={"h-100"}>
+                        <div className={"image h-100 "} id={'item-image'}>
                             <img src={item.image} className={"image-item mx-5"} alt={'img'}/>
-                            <button onClick={handleLike} className={"mx-3 mt-3 fs-4 btn btn-outline-success button-custom"}>I want to read
-                            </button>
                         </div>
                     ) : null}
 
                 </div>
-                <div className={"col-7"}>
+                <div className={"col-7 col-sm-6"}>
                     {item ? (
-                        <div className={"mt-4 mx-1"}>
+                        <div className={"mt-4 mx-1"} id={"item-desc"}>
                             <p className={'display-4 item-title mx-5'}>{item.title}</p>
                             <p className={'display-6 author mx-5'}>{item.author_name}</p>
                             {showMore ? (

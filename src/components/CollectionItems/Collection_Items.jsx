@@ -3,13 +3,18 @@ import api from "../../utils/utils";
 import {Link, useNavigate, useParams} from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import "./CollectionItems.css"
+import {PencilSquare, TrashFill} from "react-bootstrap-icons";
+import Modal from "react-bootstrap/Modal";
 
 function Collection_Items(props) {
     const params = useParams()
-    // eslint-disable-next-line no-unused-vars
     const [success, setSuccess] = useState()
     const navigate = useNavigate()
     const [items, setItemss] = useState()
+    const [error, setError] = useState()
+    const [checked, setChecked] = useState({})
+    const [show, setShow] = useState(false)
+    const [actionDone,setActionDone] = useState()
     useEffect(() => {
         try {
 
@@ -23,35 +28,114 @@ function Collection_Items(props) {
                 }
 
             }).then(res => {
-                console.log(res.data)
                 setSuccess(res.data.message)
                 setItemss(res.data)
             })
 
         } catch (error) {
-            console.log(error)
+            setError(error)
 
         }
-    }, [params.colID]);
+    }, [actionDone]);
+
+    if (actionDone){
+        console.log(actionDone)
+    }
 
     const HandleAdditem = () => {
         navigate(`/collection/add-item/${params.colID}/`)
     }
 
+    if (checked) {
+        console.log(checked)
+    }
+
+    function handleCheck(e) {
+        const {id, checked} = e.target
+        setChecked({
+            ...checked,
+            [id]: checked
+
+
+        })
+
+    }
+
+
+    function handleClick() {
+        if (Object.keys(checked).length === 0 || Object.values(checked).every(value => value === false)) {
+            setError("Select at least one item");
+            return;
+        }
+
+        setShow(true)
+
+    }
+
+    function handleEdit (){
+        console.log(params)
+        navigate(`/edit-item/${Object.keys(checked)}/${params.colID}`)
+    }
+
+
+    async function handleDelete() {
+        try {
+            await api.delete('/delete-item/', {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('token')}`
+                },
+                params: {
+                    item_id: Object.keys(checked)
+                }
+            }).then(res=>{
+                setShow(false)
+                console.log(res.data.id)
+                setActionDone(res.data)
+            });
+        } catch (error) {
+            console.error('Error deleting item:', error);
+        }
+    }
+
+
     return (
         <div className={"container justify-content-start"}>
-            <section style={{height: "60px", width: "100%"}}>
+            {error ? (
+                <div className={'alert alert-danger'}>{error}</div>
+            ) : null}
+            <section className={'mb-4'} style={{height: "60px", width: "100%"}}>
                 <Button variant={'success'} className={'btn-lg mt-3'} onClick={HandleAdditem} type={'button'}>
                     Add item
                 </Button>
+                <PencilSquare onClick={handleEdit} size={53} color={'orange'} className={'mt-3 mx-1 icon'}/>
+                <TrashFill onClick={handleClick} color={'red'} className={'mt-3 icon'} size={48}/>
             </section>
             <div className={'row'}>
+                <Modal show={show} onHide={() => setShow(false)}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Are you sure ?</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Footer>
+                        <Button variant="secondary" onClick={() => setShow(false)}>
+                            Close
+                        </Button>
+                        <Button variant="danger" onClick={handleDelete}>
+                            Delete
+                        </Button>
+                    </Modal.Footer>
+                </Modal>
                 {items ? (
                     items.items.map((item, index) => (
-                        <div className={'mt-3 col-lg-2 col-md-6 col-sm-12'}>
-                        <Link key={index} className={'mt-4'} style={{maxWidth: '15rem'}} to={`/items/${item.id}`}>
-                            <img loading={"eager"} src={item.image} alt="" className="card-img-top"/>
-                        </Link>
+                        <div key={index} className={'mt-3 col-lg-2 col-md-6 col-sm-12 mt-3'}>
+                            <input
+                                checked={checked[item.id] || false}
+                                onChange={handleCheck}
+                                id={item.id}
+                                type="checkbox"
+                            />
+                            <Link className={'mt-4'} style={{maxWidth: '15rem'}} to={`/items/${item.id}`}>
+                                <img loading="eager" src={item.image} alt="" className="card-img-top"/>
+                            </Link>
                         </div>
                     ))
                 ) : (
@@ -59,6 +143,7 @@ function Collection_Items(props) {
                         You don't have items yet
                     </div>
                 )}
+
             </div>
         </div>
     );

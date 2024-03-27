@@ -5,6 +5,8 @@ import Collection from "../../components/Collection/Collection";
 import {useLocation} from "react-router-dom";
 import {useEffect, useState} from "react";
 import {GetItemsFeed} from "../../utils/utils";
+import Search from "../../components/Search/Search";
+import SearchNav from "../../components/Search/Search";
 
 function Home(props) {
     const location = useLocation();
@@ -25,7 +27,6 @@ function Home(props) {
                 const data = await GetItemsFeed('none');
                 setFeeds(data.feeds);
                 setLikes(data.likes)
-                console.log(data)
                 setLoading(false);
             }
 
@@ -44,6 +45,9 @@ function Home(props) {
                         </div>
                     </div>
                 ) : (
+                    <div>
+
+                        <SearchNav feeds={feeds} setNewFeeds={setNewFeeds}/>
                     <div className={'row'}>
                         <div className="col">
                             <Recomendations items={feeds}/>
@@ -62,7 +66,9 @@ function Home(props) {
                             <Collection setCategory={setCategory} categories={props.categories}/>
                         </div>
                     </div>
+                    </div>
                 )}
+
             </div>
         </div>
     );

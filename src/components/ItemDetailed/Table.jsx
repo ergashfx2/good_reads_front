@@ -28,12 +28,14 @@ function Table({item}) {
                     <th scope="row">Category</th>
                     <td>{item.category}</td>
                 </tr>
-    {Object.entries(JSON.parse(item.custom_field)).map(([key, value], index) => (
-      <tr key={index}>
-        <th scope="row">{key}</th>
-        <td>{value}</td>
-      </tr>
-    ))}
+                {item.custom_field && item.custom_field.length>0 ? (
+                    Object.entries(JSON.parse(item.custom_field)).map(([key, value], index) => (
+                        <tr key={index}>
+                            <th scope="row">{key}</th>
+                            <td>{value}</td>
+                        </tr>
+                    ))
+                ) : null}
 
                 <tr>
                     <th scope="row">Language</th>

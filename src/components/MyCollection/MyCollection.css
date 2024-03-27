@@ -2,3 +2,15 @@
     text-decoration: none;
     color: black;
 }
+
+.rename :hover {
+    cursor: pointer;
+
+}
+
+@media screen and (max-width: 576px){
+    .container {
+        width: 100dvh;
+    }
+
+}
