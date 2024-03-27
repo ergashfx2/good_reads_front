@@ -1,20 +1,27 @@
 import React, {useState} from 'react';
 import folderIcon from "../../assets/folder.svg";
-import {TrashFill} from "react-bootstrap-icons";
+import {PencilSquare, TrashFill} from "react-bootstrap-icons";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import {apiAdmin} from "../../utils/utils";
+import "./AdminViewUser.css"
+import RenameModal from "./RenameModal";
+import {Link} from "react-router-dom";
 
 function AdminViewUser({user, collections, formatDate, items, setActionDone}) {
     const [selected, setSelected] = useState()
     const [checked, setChecked] = useState({})
     const [show, setShow] = useState(false);
     const [error, setError] = useState()
+    const [display, setDisplay] = useState('none')
+    const [colName,setColName] = useState()
+    const [col_id,setCol_id] = useState()
 
     function handleSelection(e) {
         setSelected(e.target.id)
         setChecked({...checked, [e.target.id]: !checked})
     }
+
 
     function handleDelete() {
         if (!selected) {
@@ -38,6 +45,15 @@ function AdminViewUser({user, collections, formatDate, items, setActionDone}) {
             setActionDone(res.data.id)
         })
         setShow(false)
+    }
+
+    function handleRename(e) {
+        let id = e.currentTarget.id.split('-')[1]
+        setCol_id(id)
+        setDisplay('block')
+const foundCollection = collections.find(obj => parseInt(obj.id) === parseInt(id));
+        setColName(foundCollection.collection_name)
+
     }
 
     return (
@@ -77,6 +93,7 @@ function AdminViewUser({user, collections, formatDate, items, setActionDone}) {
                         {error ? (
                             <div className={'alert alert-danger'}>{error}</div>
                         ) : null}
+                        <RenameModal name={colName} setColName={setColName} setDisplay={setDisplay} setActionDone={setActionDone} col_id={col_id} display={display}/>
                         <section className={'d-flex justify-content-end h-25'}>
 
                             <TrashFill className={'trash'} onClick={handleDelete} color={'red'} size={40}/>
@@ -91,7 +108,11 @@ function AdminViewUser({user, collections, formatDate, items, setActionDone}) {
                                         <p id={collection.id}
                                            className={'list-group-item mx-0'}
                                            key={index}>
-                                            <input onChange={handleSelection} id={"collections-" + collection.id}
+                                            <PencilSquare
+                                                id={'col-' + collection.id} onClick={handleRename}
+                                                className={'icon'}/>
+                                            <input className={'mx-3 mt-2'} onChange={handleSelection}
+                                                   id={"collections-" + collection.id}
                                                    type={"checkbox"}/>
                                             <span><img onClick={handleSelection}
                                                        id={"collection-" + collection.id}
@@ -115,12 +136,14 @@ function AdminViewUser({user, collections, formatDate, items, setActionDone}) {
                 {items ? (
 
                     items.map((item, index) => (
+                        <Link className={'plain-text'} to={`/edit-item/${item.id}/${item.collection}/${user.id}`}>
                         <div className={'bg-light'}>
-                            <p className={'col-9'} key={index}><input onChange={handleSelection} id={"items-" + item.id}
+                            <p className={'col-8'} key={index}><input onChange={handleSelection} id={"items-" + item.id}
                                                                       type={"checkbox"}/> <img
                                 style={{maxWidth: '50px', maxHeight: '50px', borderRadius: '50%'}}
                                 src={item.image}/> {item.title}</p>
                         </div>
+                        </Link>
                     ))
                 ) : null}
             </div>

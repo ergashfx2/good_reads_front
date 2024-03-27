@@ -63,7 +63,7 @@ function Home(props) {
                             )}
                         </div>
                         <div className="col">
-                            <Collection setCategory={setCategory} categories={props.categories}/>
+                            <Collection setCategory={setCategory} feeds={feeds} setNewFeeds={setNewFeeds}/>
                         </div>
                     </div>
                     </div>

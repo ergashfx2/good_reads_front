@@ -1,14 +1,23 @@
 import "../Collection/Collections.css"
-import CollectionItem from "./CollectionItem/CollectionItem";
-function Collection({categories,setCategory}) {
+function Collection({feeds,setNewFeeds}) {
+
+    function handleCategory (e){
+        if (e.target.textContent === 'All'){
+            setNewFeeds(feeds)
+            return
+        }
+        const foundItems = feeds.find(obj => obj.category === e.target.textContent);
+        setNewFeeds([foundItems])
+    }
 
     return (
-        <div className={"d-none d-lg-block card mt-3 "}>
-            <div>
-                {categories.map((category, index) => (
-                    <CollectionItem setCategory={setCategory} key={index} category={category}/>
-                ))}
-            </div>
+        <div className={'mt-3'}>
+            <button onClick={handleCategory} className={'btn btn-outline-secondary'}>All</button>
+            {feeds.map((feed) => (
+                <div key={feed.id}>
+                    <button onClick={handleCategory} className={'btn btn-outline-secondary'}>{feed.category}</button>
+                </div>
+            ))}
         </div>
     );
 }

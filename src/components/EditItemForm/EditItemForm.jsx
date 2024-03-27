@@ -8,7 +8,7 @@ import 'react-quill/dist/quill.snow.css';
 import {useNavigate, useParams} from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import BuildCustom from "../AddItemForm/BuildCustom";
-import api from "../../utils/utils";
+import api, {apiAdmin} from "../../utils/utils";
 const EditItemForm = ({item}) => {
     const [tags, setTags] = useState([]);
     const [tagsInput, setTagInput] = useState();
@@ -90,15 +90,26 @@ const EditItemForm = ({item}) => {
                 customData: customData,
                 category: category,
                 id: params.id,
-                collection : params.colID
+                collection: params.colID,
+                user_id: params.userID
             };
-            api.patch('/update-item/', ItemData, {
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem('token')}`
-                }
-            }).then(res => {
-                navigate(`/collection/${params.colID}`)
-            })
+            if (params.userID) {
+                apiAdmin.patch('/update-item/', ItemData, {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem('token')}`
+                    }
+                }).then(res => {
+                    navigate(`/admin/view/${params.userID}`)
+                })
+            } else {
+                api.patch('/update-item/', ItemData, {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem('token')}`
+                    }
+                }).then(res => {
+                    navigate(`/collection/${params.colID}`)
+                })
+            }
         }
     }, [submitted]);
 

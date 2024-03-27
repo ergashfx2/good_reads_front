@@ -116,10 +116,10 @@ const AddItemForm = () => {
 
     return (
         <div className={'container'}>
-            <h3 style={{height: "4rem"}} className={"text-warning pt-2 bg-primary rounded"}>Collection creation</h3>
+            <h3 style={{height: "4rem"}} className={"text-warning pt-2 bg-primary rounded"}>Form</h3>
             <Form className={'form-control'}>
                 <Form.Group className="mb-3">
-                    <Form.Label className={"fw-bold"}>Enter title of collections </Form.Label>
+                    <Form.Label className={"fw-bold"}>Enter title </Form.Label>
                     <Form.Control onChange={handleTitleChange} type="text"/>
                 </Form.Group>
                 <Form.Group className="mb-3">

@@ -3,6 +3,7 @@ import "../RegisterForm/RegisterForm.css"
 import api from "../../utils/utils";
 import { useNavigate } from 'react-router-dom';
 import AuthContext from "../../context/AuthProvider";
+import {Asterisk} from "react-bootstrap-icons";
 function RegisterForm(props) {
     const [formData, setFormData] = useState({ name: '', email: '', password: '' });
     const navigate = useNavigate();
@@ -57,7 +58,7 @@ const handleSubmit = async (e) => {
                                         )}
                                                     <input type="text" name={"name"} onChange={handleChange}
                                                            className="form-control"/>
-                                                    <label className="form-label">Your
+                                                    <label className="form-label"><Asterisk color={'red'} size={5}/> Your
                                                         Name</label>
                                                 </div>
                                             </div>
@@ -67,7 +68,7 @@ const handleSubmit = async (e) => {
                                                 <div className="form-outline flex-fill mb-0">
                                                     <input type="email" name={"email"} onChange={handleChange}
                                                            className="form-control"/>
-                                                    <label className="form-label" >Your
+                                                    <label className="form-label" ><Asterisk color={'red'} size={5}/> Your
                                                         Email</label>
                                                 </div>
                                             </div>
@@ -77,16 +78,21 @@ const handleSubmit = async (e) => {
                                                 <div className="form-outline flex-fill mb-0">
                                                     <input type="password" onChange={handleChange} name={"password"}
                                                            className="form-control"/>
-                                                    <label className="form-label">Password</label>
+                                                    <label className="form-label mb-4"><Asterisk color={'red'} size={5}/> Password</label>
+                                                    <small>
+                                                        <li>Your password can't be too similar to your other personal information.</li>
+                                                        <li>Your password must contain at least 8 characters</li>
+                                                        <li>Your password can't be a commonly used password.</li>
+                                                        <li>Your password can't be entirely numeric</li>
+                                                    </small>
                                                 </div>
                                             </div>
-
                                             <div className="d-flex flex-row align-items-center mb-4">
                                                 <i className="fas fa-key fa-lg me-3 fa-fw"></i>
                                                 <div className="form-outline flex-fill mb-0">
                                                     <input type="password"
                                                            className="form-control"/>
-                                                    <label className="form-label" >Repeat
+                                                    <label className="form-label" ><Asterisk color={'red'} size={5}/> Repeat
                                                         your password</label>
                                                 </div>
                                             </div>
