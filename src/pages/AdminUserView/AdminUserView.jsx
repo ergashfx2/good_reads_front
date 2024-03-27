@@ -8,6 +8,7 @@ function AdminUserView(props) {
     const [user, setUser] = useState()
     const [collections, setCollections] = useState()
     const [items,setItems] = useState()
+    const [actionDone,setActionDone] = useState()
     useEffect(() => {
         const GetUserAll = async () => {
             try {
@@ -19,14 +20,16 @@ function AdminUserView(props) {
                         user_id: params.user_id
                     }
                 });
+                console.log(res.data)
                 setUser(res.data.user[0]);
                 setCollections(res.data.collections);
+                setItems(res.data.items)
             } catch (error) {
                 console.error("Error fetching user data:", error);
             }
         }
         GetUserAll();
-    }, [params.user_id]);
+    }, [actionDone]);
 
     const handleCollection = async (e) => {
         try {
@@ -59,6 +62,7 @@ function AdminUserView(props) {
                 formatDate={formatDate}
                 handleCollection={handleCollection}
                 items={items}
+                setActionDone={setActionDone}
             />
         </div>
     );
