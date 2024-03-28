@@ -35,7 +35,7 @@ const handleSubmit = async () => {
                 }
             );
 
-            console.log('Request sent successfully');
+            ('Request sent successfully');
             navigate('/my-collections/');
         } catch (error) {
             console.error('Error:', error);

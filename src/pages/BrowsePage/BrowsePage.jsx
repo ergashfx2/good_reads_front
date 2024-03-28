@@ -10,7 +10,7 @@ function BrowsePage(props) {
         const GetFeed = async () => {
             const data = await GetItemsFeed()
             setFeeds(data.feeds)
-            console.log(data)
+            (data)
             setLoading(false)
         }
 

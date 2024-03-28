@@ -40,11 +40,11 @@ function MyProfile({
 
     const handeChange = async () => {
         if (image) {
-            console.log(image);
+            (image);
 
             try {
                 const imageUrl = await uploadImage(image);
-                console.log("Image URL:", imageUrl);
+                ("Image URL:", imageUrl);
                 if (imageUrl) {
                     const token = localStorage.getItem('token');
                     const response = await api.patch("/update-user/", {image: imageUrl}, {
@@ -53,7 +53,7 @@ function MyProfile({
                             'Content-Type': 'application/json'
                         }
                     });
-                    console.log("Update response:", response.data);
+                    ("Update response:", response.data);
                     setChanged(response.data.message);
                 }
             } catch (error) {
@@ -76,7 +76,7 @@ function MyProfile({
                     'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json'
                 }
             }).then(res => {
-                console.log(res.data)
+                (res.data)
                 setChanged(res.data)
                 handleClose()
             });
@@ -104,7 +104,7 @@ function MyProfile({
         }
     }
     if (profile) {
-        console.log(profile.avatar)
+        (profile.avatar)
     }
     return (<div className={"profile"}>
             {error ? (<div className={'alert alert-danger'}>{error}</div>) : null}

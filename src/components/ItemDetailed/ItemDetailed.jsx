@@ -33,7 +33,7 @@ function ItemDetailed(props) {
                 setComments(comments)
             });
         } catch (error) {
-            console.log(error);
+            (error);
         }
     }, [params.itemID]);
 
@@ -49,7 +49,7 @@ function ItemDetailed(props) {
                     Authorization: `Bearer ${localStorage.getItem('token')}`
                 }
             }).then(res => {
-                console.log(res.data)
+                (res.data)
             })
 
         } catch (error) {

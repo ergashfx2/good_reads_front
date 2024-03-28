@@ -27,7 +27,7 @@ const EditItemForm = ({item}) => {
     const [setted, setSetted] = useState(false)
 
     if (item && !setted) {
-        console.log(item.image)
+        (item.image)
         setDescription(item.description)
         setCustom(item.customData)
         setTitle(item.title)
@@ -39,7 +39,7 @@ const EditItemForm = ({item}) => {
     }
 
     if (imageUrls){
-        console.log(imageUrls)
+        (imageUrls)
     }
 
     const handleTitleChange = (e) => {
@@ -115,7 +115,7 @@ const EditItemForm = ({item}) => {
 
     const handleSubmit = async (e) => {
         setSubmitted(!submitted)
-        console.log(e.target)
+        (e.target)
     }
 
     function handleCategory(e) {

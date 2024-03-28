@@ -20,7 +20,7 @@ function AdminUserView(props) {
                         user_id: params.user_id
                     }
                 });
-                console.log(res.data)
+                (res.data)
                 setUser(res.data.user[0]);
                 setCollections(res.data.collections);
                 setItems(res.data.items)
@@ -42,7 +42,7 @@ function AdminUserView(props) {
                 }
             });
             setItems(res.data.items)
-            console.log(res.data.items)
+            (res.data.items)
         } catch (error) {
             console.error("Error fetching collection items:", error);
         }

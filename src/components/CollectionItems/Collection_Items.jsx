@@ -39,7 +39,7 @@ function Collection_Items(props) {
     }, [actionDone]);
 
     if (actionDone){
-        console.log(actionDone)
+        (actionDone)
     }
 
     const HandleAdditem = () => {
@@ -47,7 +47,7 @@ function Collection_Items(props) {
     }
 
     if (checked) {
-        console.log(checked)
+        (checked)
     }
 
     function handleCheck(e) {
@@ -73,7 +73,7 @@ function Collection_Items(props) {
     }
 
     function handleEdit (){
-        console.log(params)
+        (params)
         navigate(`/edit-item/${Object.keys(checked)}/${params.colID}`)
     }
 
@@ -89,7 +89,7 @@ function Collection_Items(props) {
                 }
             }).then(res=>{
                 setShow(false)
-                console.log(res.data.id)
+                (res.data.id)
                 setActionDone(res.data)
             });
         } catch (error) {

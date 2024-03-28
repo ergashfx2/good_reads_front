@@ -55,7 +55,7 @@ function FeedsItem(props) {
                     Authorization: `Bearer ${localStorage.getItem('token')}`
                 }
             }).then(res=>{
-                console.log(res.data)
+                (res.data)
             })
 
         }catch (error){

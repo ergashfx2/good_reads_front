@@ -19,7 +19,7 @@ function AuthorPage(props) {
                 });
                 const profile = response.data.profile[0]
                 setProfile(profile);
-                console.log(profile)
+                (profile)
 
             } catch (error) {
                 setError(error.message);
@@ -28,7 +28,7 @@ function AuthorPage(props) {
         fetchData();
     }, []);
     if (profile){
-        console.log(profile)
+        (profile)
     }
     return (
         <div>

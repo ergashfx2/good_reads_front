@@ -17,7 +17,7 @@ function CustomFields({customFields,setCustomFields}) {
         const updatedFields = [...customFields];
         updatedFields[index].label = e.target.value;
         setCustomFields(updatedFields);
-        console.log(customFields)
+        (customFields)
     };
 
     return (

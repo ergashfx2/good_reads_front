@@ -82,7 +82,7 @@ const AddItemForm = () => {
     useEffect(() => {
         const collection = params.colID;
         if (imageUrls.length > 0) {
-            console.log(imageUrls)
+            (imageUrls)
             setStatus("ready");
             const ItemData = {
                 title: title,
@@ -105,7 +105,7 @@ const AddItemForm = () => {
 
     const handleSubmit = async (e) => {
         setSubmitted(!submitted)
-        console.log(e.target)
+        (e.target)
     }
 
     function handleCategory(e) {

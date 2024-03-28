@@ -5,7 +5,7 @@ import {Link} from "react-router-dom";
 
 function RecmondationsItem(props) {
     if (props.id){
-        console.log(props.id)
+        (props.id)
     }
     return (
         <div className={"rec-item"}>

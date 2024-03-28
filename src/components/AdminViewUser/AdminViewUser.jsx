@@ -33,7 +33,7 @@ function AdminViewUser({user, collections, formatDate, items, setActionDone}) {
 
     async function handleDeleteSubmit() {
         const params = selected.split('-')
-        console.log(params)
+        (params)
         await apiAdmin.post('/delete-items/', {
             item_name: params[0],
             item_id: parseInt(params[1])

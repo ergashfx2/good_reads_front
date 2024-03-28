@@ -6,10 +6,10 @@ function Feeds(props) {
     return (
         <div className={'feeds-container mt-3'}>
             {props.items && props.items.length > 0 ? (
-                console.log(props.likes),
+                (props.likes),
                 props.items.map((item, index) => {
                     const liked = props.likes && props.likes.includes(item.id);
-                    console.log(liked)
+                    (liked)
                     return (
                         <FeedsItem
                             author_id={item.author_id}

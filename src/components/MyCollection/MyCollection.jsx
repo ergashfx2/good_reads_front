@@ -60,7 +60,7 @@ function MyCollection() {
     }
 
     function handleDelete (collection_id){
-        console.log(collection_id)
+        (collection_id)
         setColId(collection_id)
         setShow(true)
 
