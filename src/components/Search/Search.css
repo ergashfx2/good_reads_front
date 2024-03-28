@@ -1,6 +1,5 @@
-@media screen and (max-width: 576px){
-    .input-group {
-        width: 100dvh;
-    }
-    
+@media screen and (max-width: 576px) {
+  .input-group {
+    width: 100dvh;
+  }
 }

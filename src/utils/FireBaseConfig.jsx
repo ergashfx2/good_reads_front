@@ -8,7 +8,7 @@ const firebaseConfig = {
   storageBucket: "konspekt-349411.appspot.com",
   messagingSenderId: "20623673329",
   appId: "1:20623673329:web:2a37311c049749ad612650",
-  measurementId: "G-6W6B7JK4K2"
+  measurementId: "G-6W6B7JK4K2",
 };
 
 firebase.initializeApp(firebaseConfig);
@@ -29,10 +29,9 @@ const uploadImage = async (file) => {
     const snapshot = await uploadTask;
     return await snapshot.ref.getDownloadURL();
   } catch (error) {
-    console.error('Error uploading image:', error);
+    console.error("Error uploading image:", error);
     throw error;
   }
 };
 
-
-export { storage,uploadImage };
+export { storage, uploadImage };

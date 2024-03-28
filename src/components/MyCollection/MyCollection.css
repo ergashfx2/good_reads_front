@@ -1,16 +1,14 @@
 .plain-text {
-    text-decoration: none;
-    color: black;
+  text-decoration: none;
+  color: black;
 }
 
 .rename :hover {
-    cursor: pointer;
-
+  cursor: pointer;
 }
 
-@media screen and (max-width: 576px){
-    .container {
-        width: 100dvh;
-    }
-
+@media screen and (max-width: 576px) {
+  .container {
+    width: 100dvh;
+  }
 }
