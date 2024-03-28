@@ -25,7 +25,6 @@ function MyProfilePage(props) {
                     },
                 });
                 const profile = response.data.profile[0]
-                console.log(profile)
                 setProfile(profile);
                 setChanged(response.data.message)
                 setGender(profile.gender)
