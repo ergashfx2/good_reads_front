@@ -37,7 +37,7 @@ const AddItemForm = () => {
                 }
             }).then(res => {
                 console.log(res.data.collection)
-                setCustom(res.data.collection[0].custom_field)
+                setCustom(res.data.collection[0].custom_fields)
             })
         }
         GetCustoms()
