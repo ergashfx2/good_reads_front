@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+
 
 function BuildCustom({ fields,setCustomData }) {
 
@@ -19,6 +19,7 @@ const handleCustom = (e) => {
     });
 };
 
+
     return (
         <div>
             {fields ? fields.map((fieldString, index) => {
@@ -35,6 +36,8 @@ const handleCustom = (e) => {
                     </div>
                 );
             }) : null}
+
+
         </div>
     );
 }

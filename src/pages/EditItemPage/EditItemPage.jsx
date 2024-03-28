@@ -9,7 +9,6 @@ function EditItemPage(props) {
     const [loading,setLoading] = useState(true)
         useEffect(() => {
         const GetCustoms = async () => {
-            (params.id)
             await api.get('/item-detail/', {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`

@@ -38,17 +38,10 @@ function Collection_Items(props) {
         }
     }, [actionDone]);
 
-    if (actionDone){
-        (actionDone)
-    }
-
     const HandleAdditem = () => {
         navigate(`/collection/add-item/${params.colID}/`)
     }
 
-    if (checked) {
-        (checked)
-    }
 
     function handleCheck(e) {
         const {id, checked} = e.target
@@ -73,7 +66,6 @@ function Collection_Items(props) {
     }
 
     function handleEdit (){
-        (params)
         navigate(`/edit-item/${Object.keys(checked)}/${params.colID}`)
     }
 
@@ -89,7 +81,6 @@ function Collection_Items(props) {
                 }
             }).then(res=>{
                 setShow(false)
-                (res.data.id)
                 setActionDone(res.data)
             });
         } catch (error) {

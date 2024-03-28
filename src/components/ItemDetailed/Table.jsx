@@ -16,7 +16,7 @@ function Table({item}) {
                     <td>{formatDate(item.created_time)}</td>
                 </tr>
                 <tr>
-                    <th scope="row">Author</th>
+                    <th scope="row">Published By</th>
                     <td>{item.author_name}</td>
                 </tr>
                 <tr>

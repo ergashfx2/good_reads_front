@@ -40,7 +40,7 @@ const AddItemForm = () => {
             })
         }
         GetCustoms()
-    }, []);
+    }, [params.colID]);
 
     const handleTitleChange = (e) => {
         setTitle(e.target.value);
@@ -82,7 +82,6 @@ const AddItemForm = () => {
     useEffect(() => {
         const collection = params.colID;
         if (imageUrls.length > 0) {
-            (imageUrls)
             setStatus("ready");
             const ItemData = {
                 title: title,
@@ -90,7 +89,7 @@ const AddItemForm = () => {
                 collection: collection,
                 tags: tags,
                 images: imageUrls,
-                customData: customData,
+                customData: [customData],
                 category: category
             };
             api.post('/create-item/', ItemData, {
@@ -105,7 +104,7 @@ const AddItemForm = () => {
 
     const handleSubmit = async (e) => {
         setSubmitted(!submitted)
-        (e.target)
+        setStatus('pending')
     }
 
     function handleCategory(e) {

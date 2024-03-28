@@ -22,29 +22,28 @@ const EditItemForm = ({item}) => {
     const navigate = useNavigate();
     const params = useParams();
     const [custom, setCustom] = useState();
-    const [customData, setCustomData] = useState([]);
+    const [customData, setCustomData] = useState();
     const [category, setCategory] = useState('');
     const [setted, setSetted] = useState(false)
 
     if (item && !setted) {
-        (item.image)
         setDescription(item.description)
-        setCustom(item.customData)
+        setCustomData(item.custom_field)
         setTitle(item.title)
         setCategory(item.category)
         setTags(item.tags)
         setSetted(true)
-        setCustom(item.custom_field)
+        setCustom(item)
         setImageUrls([...imageUrls,item.image])
-    }
 
-    if (imageUrls){
-        (imageUrls)
+        if (custom){
+            console.log(custom)
+        }
     }
-
     const handleTitleChange = (e) => {
         setTitle(e.target.value);
     }
+
 
     const handleDescriptionChange = (newValue) => {
         setDescription(newValue);
@@ -87,7 +86,7 @@ const EditItemForm = ({item}) => {
                 description: description,
                 tags: tags,
                 images: imageUrls,
-                customData: customData,
+                customData: [customData],
                 category: category,
                 id: params.id,
                 collection: params.colID,
@@ -115,7 +114,7 @@ const EditItemForm = ({item}) => {
 
     const handleSubmit = async (e) => {
         setSubmitted(!submitted)
-        (e.target)
+        setStatus('pending')
     }
 
     function handleCategory(e) {
@@ -162,7 +161,7 @@ const EditItemForm = ({item}) => {
                 </Form.Group>
 
             </Form>
-            <BuildCustom setCustomData={setCustomData} fields={custom}/>
+            <BuildCustom setCustomData={setCustomData} edit={customData}/>
             <UploadImages handleImagesUrl={handleImagesUrl} setImagesUrl={setImageUrls} submitted={submitted}/>
             <Button className={buttonClass} onClick={handleSubmit} variant={'primary'}>{buttonText}</Button>
         </div>
