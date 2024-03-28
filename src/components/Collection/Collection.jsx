@@ -1,26 +1,27 @@
-import "../Collection/Collections.css"
-function Collection({feeds,setNewFeeds}) {
+import React from 'react';
+import "../Collection/Collections.css";
 
-    function handleCategory (e){
-        if (e.target.textContent === 'All'){
-            setNewFeeds(feeds)
-            return
+function Collection({ feeds, setNewFeeds }) {
+    function handleCategory(e) {
+        const category = e.target.textContent;
+        if (category === 'All') {
+            setNewFeeds(feeds);
+            return;
         }
-        const foundItems = feeds.find(obj => obj.category === e.target.textContent);
-        setNewFeeds([foundItems])
+        const uniqueFeeds = feeds.filter(feed => feed.category === category);
+        setNewFeeds(uniqueFeeds);
     }
 
+    const uniqueCategories = Array.from(new Set(feeds.map(feed => feed.category)));
+
     return (
-        <div className={'mt-3'}>
-            <button onClick={handleCategory} className={'btn btn-outline-secondary'}>All</button>
-            {feeds.map((feed) => (
-                <div key={feed.id}>
-                    <button onClick={handleCategory} className={'btn btn-outline-secondary'}>{feed.category}</button>
-                </div>
+        <div className='mt-3'>
+            <button onClick={handleCategory} className='btn btn-outline-secondary'>All</button>
+            {uniqueCategories.map((category, index) => (
+                <button key={index} onClick={handleCategory} className='btn btn-outline-secondary'>{category}</button>
             ))}
         </div>
     );
 }
-
 
 export default Collection;
