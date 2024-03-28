@@ -36,7 +36,7 @@ const AddItemForm = () => {
                     id: params.colID
                 }
             }).then(res => {
-                console.log(res)
+                console.log(res[0].custom_field)
                 setCustom(res.data.collection[0].custom_field)
             })
         }
