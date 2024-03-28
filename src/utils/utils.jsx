@@ -1,4 +1,4 @@
-const axios = require("axios");
+import axios from "axios";
 
 const api = axios.create({
   baseURL: "https://readopia-backend-2.onrender.com/api/users/",

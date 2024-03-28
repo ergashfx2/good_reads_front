@@ -5,7 +5,6 @@ import Collection from "../../components/Collection/Collection";
 import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { GetItemsFeed } from "../../utils/utils";
-import Search from "../../components/Search/Search";
 import SearchNav from "../../components/Search/Search";
 
 function Home(props) {
