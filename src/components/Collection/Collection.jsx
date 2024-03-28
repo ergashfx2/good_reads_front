@@ -25,7 +25,7 @@ function Collection({ feeds, setNewFeeds }) {
         <button
           key={index}
           onClick={handleCategory}
-          className="btn btn-outline-secondary"
+          className="btn btn-outline-secondary d-block"
         >
           {category}
         </button>
